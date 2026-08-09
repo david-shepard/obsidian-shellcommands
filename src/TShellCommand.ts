@@ -288,6 +288,13 @@ export class TShellCommand extends Cacheable {
         return this.configuration.confirm_execution;
     }
 
+    /**
+     * Missing/undefined in older settings files → false (default off).
+     */
+    public getTerminateProcessTree(): boolean {
+        return true === this.configuration.terminate_process_tree;
+    }
+
     public getIgnoreErrorCodes() {
         return this.configuration.ignore_error_codes;
     }

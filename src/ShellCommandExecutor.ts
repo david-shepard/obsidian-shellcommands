@@ -19,6 +19,7 @@
 
 import {
     ChildProcess,
+    execFile,
 } from "child_process";
 import {
     cloneObject,
@@ -297,6 +298,21 @@ export class ShellCommandExecutor {
 
                 // Define a terminator
                 const processTerminator = () => {
+                    const pid = child_process.pid;
+                    if (
+                        this.t_shell_command.getTerminateProcessTree()
+                        && undefined !== pid
+                        && "win32" === process.platform
+                    ) {
+                        // Kill the spawn and all descendants (cmd → powershell → node, etc.).
+                        execFile("taskkill", ["/F", "/T", "/PID", String(pid)], (error) => {
+                            if (error) {
+                                debugLog("taskkill /T failed, falling back to SIGTERM: " + error.message);
+                                child_process.kill("SIGTERM");
+                            }
+                        });
+                        return;
+                    }
                     child_process.kill("SIGTERM");
                 };
                 

@@ -277,6 +277,19 @@ export class ShellCommandSettingsModal extends SC_Modal {
             )
         ;
 
+        // Terminate process tree (default off — SIGTERM only hits the top-level spawn on Windows)
+        new Setting(container_element)
+            .setName("Terminate process tree")
+            .setDesc("When requesting terminate (power icon), also kill child processes of the shell command. Off by default. Enable for commands that spawn long-lived children (e.g. nested powershell or agent). On Windows uses taskkill /F /T.")
+            .addToggle(toggle => toggle
+                .setValue(this.t_shell_command.getTerminateProcessTree())
+                .onChange(async (value) => {
+                    this.t_shell_command.getConfiguration().terminate_process_tree = value;
+                    await this.plugin.saveSettings();
+                })
+            )
+        ;
+
         // Stdin field
         new Setting(container_element)
             .setName("Pass variables to standard input (stdin) (experimental)")

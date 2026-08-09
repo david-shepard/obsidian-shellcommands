@@ -49,6 +49,11 @@ export interface ShellCommandConfiguration {
     alias: string;
     icon: string | null;
     confirm_execution: boolean;
+    /**
+     * When true, the "Request to terminate the process" control kills the spawned process and its descendants
+     * (Windows: taskkill /T). Default false keeps child_process.kill("SIGTERM") on the top-level spawn only.
+     */
+    terminate_process_tree: boolean;
     ignore_error_codes: number[];
     input_contents: {
         stdin: string | null,
@@ -87,6 +92,7 @@ export function newShellCommandConfiguration(shell_command_id: string, shell_com
         alias: "",
         icon: null,
         confirm_execution: false,
+        terminate_process_tree: false,
         ignore_error_codes: [],
         input_contents: {
             stdin: null,
