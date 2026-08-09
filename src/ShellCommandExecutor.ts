@@ -297,7 +297,19 @@ export class ShellCommandExecutor {
                 child_process.stderr.setEncoding("utf8"); // ... stderr as strings, not as Buffer objects.
 
                 // Define a terminator
+                // Windows taskkill often yields a non-null exit code (not Node's signal/null case),
+                // so remember an explicit user cancel for exit handling + notice.
+                let userRequestedTerminate = false;
                 const processTerminator = () => {
+                    if (userRequestedTerminate) {
+                        return; // Ignore double-clicks on the power icon.
+                    }
+                    userRequestedTerminate = true;
+                    const label = this.t_shell_command.getAlias()
+                        || shell_command_parsing_result.unwrappedShellCommandContent;
+                    // Force-kill cannot let the child print "cancelled"; notify from the plugin.
+                    this.plugin.newNotification("Cancelled: " + label);
+
                     const pid = child_process.pid;
                     if (
                         this.t_shell_command.getTerminateProcessTree()
@@ -326,7 +338,12 @@ export class ShellCommandExecutor {
                 switch (this.t_shell_command.getOutputHandlingMode()) {
                     case "buffered": {
                         // Output will be buffered and handled as a single batch.
-                        await this.handleBufferedOutput(child_process, shell_command_parsing_result, outputHandlers);
+                        await this.handleBufferedOutput(
+                            child_process,
+                            shell_command_parsing_result,
+                            outputHandlers,
+                            () => userRequestedTerminate,
+                        );
                         break;
                     }
 
@@ -350,7 +367,12 @@ export class ShellCommandExecutor {
         }
     }
 
-    private handleBufferedOutput(child_process: ChildProcess, shell_command_parsing_result: ShellCommandParsingResult, outputChannels: OutputHandlerConfigurations): Promise<void> {
+    private handleBufferedOutput(
+        child_process: ChildProcess,
+        shell_command_parsing_result: ShellCommandParsingResult,
+        outputChannels: OutputHandlerConfigurations,
+        wasUserRequestedTerminate: () => boolean = () => false,
+    ): Promise<void> {
         return new Promise((resolve: () => void) => {
             child_process.on("exit", (exitCode: number | null) => {
                 // exitCode is null if user terminated the process. Reference: https://nodejs.org/api/child_process.html#event-exit (read on 2022-11-27).
@@ -362,6 +384,19 @@ export class ShellCommandExecutor {
                 }
                 const stdout: string = child_process.stdout.read() ?? "";
                 let stderr: string = child_process.stderr.read() ?? ""; // let instead of const: stderr can be emptied later due to ignoring.
+
+                // Power icon: Cancelled notice already shown; skip empty/error balloons from force-kill.
+                if (wasUserRequestedTerminate() || exitCode === null) {
+                    debugLog("Shell command terminated by user; suppressing buffered error output.");
+                    if (!(stdout.trim() || stderr.trim())) {
+                        resolve();
+                        return;
+                    }
+                    // If the child managed to print a final status line before dying, still show it.
+                    handleBufferedOutput(this.plugin, this.t_shell_command, shell_command_parsing_result, stdout, "", 0, outputChannels);
+                    resolve();
+                    return;
+                }
     
                 // Did the shell command execute successfully?
                 if (exitCode === null || exitCode > 0) {
