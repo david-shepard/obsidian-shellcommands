@@ -19,7 +19,7 @@ Mind the order!
 Features that are currently in development and not released yet. This does not include features that require longer planning, for which please see the [Roadmap](https://publish.obsidian.md/shellcommands/Roadmap) and [Ideas](https://github.com/Taitava/obsidian-shellcommands/discussions/categories/ideas) sections.
 
 ### To be Fixed
- - Execution notification modes _Show until the process is finished_ and _Show only if executing takes long_: do not dismiss the balloon when the notice body is clicked; keep it until the process exits (terminate control still works). Related pull request will reference the feature-request issue.
+ - [Execution notification modes _Show until the process is finished_ and _Show only if executing takes long_: do not dismiss the balloon when the notice body is clicked; keep it until the process exits (terminate control still works) (#484)](https://github.com/Taitava/obsidian-shellcommands/issues/484).
 
 ### To be Changed
  - [Updated copyright year to 2025 (#199)](https://github.com/Taitava/obsidian-shellcommands/issues/199).
