@@ -528,6 +528,37 @@ export class ShellCommandExecutor {
             }
         };
 
+        /**
+         * Obsidian Notices with duration 0 stay until the user clicks them. For process-lifetime
+         * "Executing…" notices, block body-click dismiss so the balloon matches
+         * "Show until the process is finished". The terminate control is exempt.
+         */
+        const makeExecutionNoticeSticky = (notice: Notice) => {
+            const guard = (event: Event) => {
+                const target = event.target;
+                if (target instanceof Element && target.closest(".SC-icon-terminate-process")) {
+                    return;
+                }
+                event.preventDefault();
+                event.stopImmediatePropagation();
+            };
+            const elements: HTMLElement[] = [];
+            // @ts-ignore Notice.noticeEl / containerEl: private or version-gated Obsidian API.
+            const noticeEl = notice.noticeEl;
+            if (undefined !== noticeEl && noticeEl instanceof HTMLElement) {
+                elements.push(noticeEl);
+            }
+            // @ts-ignore Notice.containerEl since Obsidian 1.8.7.
+            const containerEl = notice.containerEl;
+            if (undefined !== containerEl && containerEl instanceof HTMLElement && !elements.includes(containerEl)) {
+                elements.push(containerEl);
+            }
+            for (const el of elements) {
+                el.addEventListener("click", guard, true);
+                el.addEventListener("pointerdown", guard, true);
+            }
+        };
+
         const execution_notification_message = "Executing: " + (this.t_shell_command.getAlias() || shell_command);
         switch (execution_notification_mode) {
             case "quick": {
@@ -540,6 +571,7 @@ export class ShellCommandExecutor {
                 // Show the notification until the process ends.
                 const processNotification = this.plugin.newNotification(execution_notification_message, 0);
                 createRequestTerminatingButton(processNotification);
+                makeExecutionNoticeSticky(processNotification);
 
                 // Hide the notification when the process finishes.
                 child_process.on("exit", () => processNotification.hide());
@@ -554,6 +586,7 @@ export class ShellCommandExecutor {
                         // Display notification.
                         const processNotification = this.plugin.newNotification(execution_notification_message, 0);
                         createRequestTerminatingButton(processNotification);
+                        makeExecutionNoticeSticky(processNotification);
 
                         // Hide the notification when the process finishes.
                         child_process.on("exit", () => processNotification.hide());
