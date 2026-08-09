@@ -21,6 +21,9 @@ Features that are currently in development and not released yet. This does not i
 ### To be Added
  - Per shell command setting _Terminate process tree_ (default off). When enabled, the terminate (power) control kills the spawn and its descendants on Windows via `taskkill /F /T` so nested children (e.g. powershell → agent) do not keep running after SIGTERM on the top-level process only. Related pull request will reference the feature-request issue.
 
+### To be Fixed
+ - [Execution notification modes _Show until the process is finished_ and _Show only if executing takes long_: do not dismiss the balloon when the notice body is clicked; keep it until the process exits (terminate control still works) (#484)](https://github.com/Taitava/obsidian-shellcommands/issues/484).
+
 ### To be Changed
  - [Updated copyright year to 2025 (#199)](https://github.com/Taitava/obsidian-shellcommands/issues/199).
 
