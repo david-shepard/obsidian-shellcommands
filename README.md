@@ -4,17 +4,7 @@
 
 > ## ⚠️ This is a modified fork
 >
-> **This repository is not the official _Shell commands_ plugin.** It is a modified version, maintained by [David Shepard](https://github.com/david-shepard), of the plugin originally written by [Jarkko Linnanvirta (Taitava)](https://github.com/Taitava/obsidian-shellcommands). The original has not seen a release since 2024-11-09 (version 0.23.0), and stopped working on recent Obsidian versions.
->
-> **Modifications made in this fork (since 2026-08):**
-> - Fixed blank _Shell commands_ settings tabs on Obsidian 1.13+ ([`src/settings/setting_elements/Tabs.ts`](src/settings/setting_elements/Tabs.ts)).
-> - Added a GitHub Actions release workflow, and build tooling fixes.
-> - See [CHANGELOG.md](CHANGELOG.md) for the full list.
->
-> Please **do not report issues with this fork to the original author.** File them at [david-shepard/obsidian-shellcommands](https://github.com/david-shepard/obsidian-shellcommands/issues) instead.
->
-> Most of the documentation below, and all links in it, still refer to the original project — its documentation remains accurate for everything this fork did not change. Donation links still point to the original author, who wrote nearly all of this code and deserves the support.
->
+> **This repository is not the official _Shell commands_ plugin.** It is a modified version (fork)
 > This fork is distributed under the same licence as the original, the GNU GPL v3.0. See [Copyright](#copyright).
 
 This plugin lets you define shell/terminal commands in settings and run them quickly via Obsidian's command palette, or via hotkeys. Use note related variables as part of the commands, and insert output back to your notes, if you wish. This is a Swiss army knife when it comes to accessing external applications from Obsidian, and you are the one who defines its tools.
@@ -163,7 +153,7 @@ This project is free open source software and receives no funding. I want to tha
 
 Copyright (C) 2021 - 2025 Jarkko Linnanvirta (see other authors in [AUTHORS.md](AUTHORS.md)).
 
-Modifications in this fork: Copyright (C) 2026 David Shepard. This is a modified version of the original _Shell commands_ plugin; the modifications are described at the [top of this file](#️-this-is-a-modified-fork) and in [CHANGELOG.md](CHANGELOG.md). The original program is unmodified except where noted there.
+This is a modified version of the original _Shell commands_ plugin; the modifications are described at the [top of this file](#️-this-is-a-modified-fork) and in [CHANGELOG.md](CHANGELOG.md). The original program is unmodified except where noted there.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

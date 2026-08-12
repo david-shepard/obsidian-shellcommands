@@ -8,7 +8,7 @@
     "build": "obsidian-plugin build src/main.ts -o ."
   },
   "keywords": [],
-  "author": "Jarkko Linnanvirta; fork modifications by David Shepard",
+  "author": "Jarkko Linnanvirta",
   "license": "GPL-3.0-only",
   "devDependencies": {
     "@codemirror/state": "^6.1.0",

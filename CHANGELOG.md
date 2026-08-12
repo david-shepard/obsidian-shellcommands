@@ -483,8 +483,7 @@ First release of the fork. The original plugin's last release, [0.23.0], is from
 ## [0.0.0] - 2021-08-22
 - Initial release.
 
-[Unreleased]: https://github.com/david-shepard/obsidian-shellcommands/compare/1.0.2...HEAD
-[1.0.2]: https://github.com/david-shepard/obsidian-shellcommands/compare/0.23.0...1.0.2
+[Unreleased - 1.0.2 (David Shepard's fork)]: https://github.com/david-shepard/obsidian-shellcommands/compare/0.23.0...1.0.2
 [0.23.0]: https://github.com/Taitava/obsidian-shellcommands/compare/0.22.0...0.23.0
 [0.22.0]: https://github.com/Taitava/obsidian-shellcommands/compare/0.21.0...0.22.0
 [0.21.0]: https://github.com/Taitava/obsidian-shellcommands/compare/0.20.1...0.21.0

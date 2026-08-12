@@ -54,15 +54,14 @@ Contact:
 Contact:
 - https://github.com/jvsteiner
 
-## David Shepard
-- Contributor (in [a fork](https://github.com/david-shepard/obsidian-shellcommands), not merged upstream):
-  - Fixed blank _Shell commands_ settings tabs on Obsidian 1.13+ (2026-08).
-  - Added a GitHub Actions release workflow and build tooling fixes.
-- Testing on Windows
-- Maintains the fork; not affiliated with the original author.
+## Nik DuVall
+  - Fixed blank _Shell commands_ settings tabs on Obsidian 1.13+ (2026-08), see [fix](https://github.com/nikduvall/obsidian-shellcommands/commit/ddfb5cfcb5dd96cd9bc89bab6fad4fc3796f1b1c)
 
-Contact:
-- https://github.com/david-shepard
+## David Shepard
+  - Added a GitHub Actions release workflow and build tooling fixes. Contributor (in [a fork](https://github.com/david-shepard/obsidian-shellcommands))
+  - Testing on Windows
+
+
 
 <!-- ADDING YOURSELF AS AN AUTHOR:
 
