@@ -1,6 +1,12 @@
 /*
  * 'Shell commands' plugin for Obsidian.
  * Copyright (C) 2021 - 2025 Jarkko Linnanvirta
+ * Modifications in this file: Copyright (C) 2026 David Shepard
+ *
+ * This file has been MODIFIED from the original 'Shell commands' plugin.
+ * Modified 2026-08 by David Shepard: fixed blank settings tabs on Obsidian
+ * 1.13+ by resolving tab panes via the in-memory container map instead of
+ * document.getElementById().
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

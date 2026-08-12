@@ -1,6 +1,10 @@
 /*
  * 'Shell commands' plugin for Obsidian.
  * Copyright (C) 2021 - 2025 Jarkko Linnanvirta
+ * Modifications in this file: Copyright (C) 2026 David Shepard
+ *
+ * This file has been MODIFIED from the original 'Shell commands' plugin.
+ * Modified 2026-08 by David Shepard: added the GitHubFork link constants.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,4 +62,15 @@ export const GitHub = {
     repository: "https://github.com/Taitava/obsidian-shellcommands",
     changelog: "https://github.com/Taitava/obsidian-shellcommands/blob/main/CHANGELOG.md",
     license: "https://github.com/Taitava/obsidian-shellcommands/blob/main/LICENSE",
+};
+
+/**
+ * Links to the fork that this build was made from. The upstream links in GitHub
+ * above are kept as-is so that the original project stays credited, but anything
+ * describing *this* build (its version, changelog and issue tracker) must point
+ * here instead - upstream has no knowledge of this fork's releases.
+ */
+export const GitHubFork = {
+    repository: "https://github.com/david-shepard/obsidian-shellcommands",
+    changelog: "https://github.com/david-shepard/obsidian-shellcommands/blob/main/CHANGELOG.md",
 };

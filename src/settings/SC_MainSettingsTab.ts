@@ -1,6 +1,11 @@
 /*
  * 'Shell commands' plugin for Obsidian.
  * Copyright (C) 2021 - 2025 Jarkko Linnanvirta
+ * Modifications in this file: Copyright (C) 2026 David Shepard
+ *
+ * This file has been MODIFIED from the original 'Shell commands' plugin.
+ * Modified 2026-08 by David Shepard: added a fork notice to the copyright
+ * paragraph shown in the settings tab.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,6 +46,7 @@ import {debugLog} from "../Debug";
 import {
     Documentation,
     GitHub,
+    GitHubFork,
 } from "../Documentation";
 import {getSC_Events} from "../events/SC_EventList";
 import {SC_Event} from "../events/SC_Event";
@@ -125,17 +131,23 @@ export class SC_MainSettingsTab extends PluginSettingTab {
         );
 
         // Documentation link & GitHub links
+        // Note: the version link points to the fork's changelog, because upstream's
+        // changelog does not contain this build's version.
         containerEl.createEl("p").insertAdjacentHTML("beforeend",
             "<a href=\"" + Documentation.index + "\">Documentation</a> - " +
             "<a href=\"" + GitHub.repository + "\">SC on GitHub</a> - " +
-            "<a href=\"" + GitHub.changelog + "\">SC version: " + this.plugin.getPluginVersion() + "</a>",
+            "<a href=\"" + GitHubFork.repository + "\">This fork on GitHub</a> - " +
+            "<a href=\"" + GitHubFork.changelog + "\">SC version: " + this.plugin.getPluginVersion() + "</a>",
         );
 
         // Copyright notice
+        // GPL-3.0 section 5(a) requires a modified version to carry prominent notices
+        // stating that it was modified, and the date. This paragraph is that notice.
         const copyright_paragraph = containerEl.createEl("p");
         copyright_paragraph.addClass("SC-small-font");
         copyright_paragraph.insertAdjacentHTML("beforeend", `
             <em>Shell commands</em> plugin Copyright &copy; 2021 - 2025 Jarkko Linnanvirta. This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions. See more information in the license: <a href="${GitHub.license}">GNU GPL-3.0</a>.
+            <br><strong>This is a modified version</strong>, not the original <em>Shell commands</em> plugin. Modified since August 2026 by David Shepard, with fork modifications Copyright &copy; 2026 David Shepard. Please report problems with this build to <a href="${GitHubFork.repository}/issues">the fork's issue tracker</a>, not to the original author.
         `);
 
         // KEEP THIS AFTER CREATING ALL ELEMENTS:

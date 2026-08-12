@@ -1,6 +1,6 @@
 {
   "name": "obsidian-shellcommands",
-  "version": "0.23.0",
+  "version": "1.0.2",
   "description": "You can predefine system commands that you want to run frequently, and assign hotkeys for them. For example open external applications.://obsidian.md)",
   "main": "main.js",
   "scripts": {
@@ -8,8 +8,8 @@
     "build": "obsidian-plugin build src/main.ts -o ."
   },
   "keywords": [],
-  "author": "",
-  "license": "GPL-3.0",
+  "author": "Jarkko Linnanvirta; fork modifications by David Shepard",
+  "license": "GPL-3.0-only",
   "devDependencies": {
     "@codemirror/state": "^6.1.0",
     "@codemirror/view": "^6.0.3",

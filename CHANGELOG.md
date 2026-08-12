@@ -15,14 +15,22 @@ Different types of changes:
 Mind the order!
 -->
 
-## [Unreleased]
-Features that are currently in development and not released yet. This does not include features that require longer planning, for which please see the [Roadmap](https://publish.obsidian.md/shellcommands/Roadmap) and [Ideas](https://github.com/Taitava/obsidian-shellcommands/discussions/categories/ideas) sections.
+> **Fork notice.** This changelog is inherited from the original _Shell commands_ plugin by Jarkko Linnanvirta. Everything from [0.23.0] downwards is his work and describes the original project. The `1.0.x` entries below describe modifications made in [this fork](https://github.com/david-shepard/obsidian-shellcommands) by David Shepard, which is **not** an official release of the original plugin. The `1.0.x` version numbers belong to this fork only and do not correspond to any upstream release.
 
-### To be Changed
- - [Updated copyright year to 2025 (#199)](https://github.com/Taitava/obsidian-shellcommands/issues/199).
+## [Unreleased]
+- Nothing at the moment.
+
+## [1.0.2] - 2026-08-12 (fork)
+First release of the fork. The original plugin's last release, [0.23.0], is from 2024-11-09 and no longer works correctly on current Obsidian versions.
 
 ### Fixed
  - Settings tabs blank on Obsidian 1.13+: activate tab panes via the in-memory container map / container-scoped lookup instead of `document.getElementById()`, so `.SC-tab-active` is applied to the visible pane and the Shell commands list / New shell command button render again.
+
+### Changed
+ - The plugin now identifies itself as a modified version, per section 5(a) of the GNU GPL v3.0: a fork notice was added to the settings tab's copyright paragraph, to `README.md`, and to the header of each modified source file. `manifest.json`'s `author` and `authorUrl` now name the fork maintainer instead of the original author, so that problems with this build are not reported to him. The donation link is deliberately left pointing at the original author.
+ - Added a GitHub Actions workflow that builds and drafts a release when a tag is pushed.
+ - Build tooling: added the `obsidian-plugin-cli` dev dependency that `npm run build` requires, and updated transitive dev dependencies to clear high-severity advisories reported by `npm audit`. No runtime behaviour changed.
+ - Included upstream's unreleased [copyright year update to 2025 (#199)](https://github.com/Taitava/obsidian-shellcommands/issues/199), which was committed upstream after 0.23.0 but never released there.
 
 ## [0.23.0] - 2024-11-09
 
@@ -475,7 +483,8 @@ Features that are currently in development and not released yet. This does not i
 ## [0.0.0] - 2021-08-22
 - Initial release.
 
-[Unreleased]: https://github.com/Taitava/obsidian-shellcommands/compare/0.23.0...HEAD
+[Unreleased]: https://github.com/david-shepard/obsidian-shellcommands/compare/1.0.2...HEAD
+[1.0.2]: https://github.com/david-shepard/obsidian-shellcommands/compare/0.23.0...1.0.2
 [0.23.0]: https://github.com/Taitava/obsidian-shellcommands/compare/0.22.0...0.23.0
 [0.22.0]: https://github.com/Taitava/obsidian-shellcommands/compare/0.21.0...0.22.0
 [0.21.0]: https://github.com/Taitava/obsidian-shellcommands/compare/0.20.1...0.21.0
